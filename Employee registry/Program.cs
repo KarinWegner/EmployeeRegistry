@@ -1,4 +1,6 @@
-﻿internal class Program
+﻿using Employee_registry;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -45,7 +47,7 @@
                         if (input == "yes")
                         {
                             employeeRegistry.Add(new Employee(nameHolder, salaryHolder));
-                            Console.WriteLine(employeeRegistry[0].name);
+                            Console.WriteLine(employeeRegistry[0].GetName());
                             correctInput = true;
                         }
                         else if (input == "no")
@@ -68,19 +70,19 @@
                     }
                     for (int i = 0; i < employeeRegistry.Count; i++)
                     {
-                        Console.WriteLine(employeeRegistry[i].name + " | "+ employeeRegistry[i].salary);
+                        Console.WriteLine(employeeRegistry[i].GetName() + " | "+ employeeRegistry[i].GetSalary());
                     }
                 }
                 else if(input == "find employee")
                 {
                     Console.WriteLine("Employee name: ");
                     input = Console.ReadLine();
-                    Employee searchEmployee = employeeRegistry.Find(item => item.name.Equals(input));
+                    Employee searchEmployee = employeeRegistry.Find(item => item.GetName().Equals(input));
                     if (searchEmployee != null)
                     {bool employeeEditor = true;
                         while (employeeEditor)
                         {
-                        Console.WriteLine("Employee found! Name: " + searchEmployee.name + " Salary: " + searchEmployee.salary);
+                        Console.WriteLine("Employee found! Name: " + searchEmployee.GetName() + " Salary: " + searchEmployee.GetSalary());
                         Console.WriteLine();
                         Console.WriteLine("Choose action: \nedit name\nedit salary\nremove employee\nreturn");
                         
@@ -94,14 +96,14 @@
                                 Console.WriteLine("Input new name: ");
                                 input = Console.ReadLine();
                                 string nameHolder = input;
-                                Console.WriteLine("Change " + searchEmployee.name + "'s name to " + nameHolder + "?");
+                                Console.WriteLine("Change " + searchEmployee.GetName() + "'s name to " + nameHolder + "?");
                                 while (!correctInput)
                                 {
                                     input = Console.ReadLine();
                                     if (input == "yes")
                                     {
                                         Console.WriteLine("Name has been changed.");
-                                        searchEmployee.name = nameHolder;
+                                        searchEmployee.SetName(nameHolder);
                                         correctInput = true;
                                     }
                                     if (input == "no")
@@ -119,7 +121,7 @@
                             }
                             else if (input == "remove employee")
                             {
-                                    Console.WriteLine(searchEmployee.name + " has been deleted from registry");
+                                    Console.WriteLine(searchEmployee.GetName() + " has been deleted from registry");
                                     employeeRegistry.Remove(searchEmployee);
                                     employeeEditor = false;
                                 correctInput = true;
@@ -150,16 +152,16 @@
 
         }
     }
-    public class Employee
-    {
-        public string name = "";
-        public int salary = 0;
+    //public class Employee
+    //{
+    //    public string name = "";
+    //    public int salary = 0;
 
-        public Employee(string n, int s)
-        { 
-             name = n;
-            salary = s;
-        }
+    //    public Employee(string n, int s)
+    //    { 
+    //         name = n;
+    //        salary = s;
+    //    }
 
-    }
+    //}
 }
