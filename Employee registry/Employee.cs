@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee_registry
 {
+    using Employee_registry;
     internal class Employee
     {
         private string name;
@@ -27,6 +28,10 @@ namespace Employee_registry
         public int GetSalary()
         {
             return salary;
+        }
+        public void SetSalary(int s)
+        {
+            salary = s;
         }
     }
 }
